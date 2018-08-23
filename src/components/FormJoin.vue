@@ -4,7 +4,7 @@
       <label>Username</label>
       <input type="text" v-model="username" placeholder="Input your username" class="form-control">
       <br>
-      <button type="submit" class="btn btn-primary">JOIN</button>
+      <button type="submit" to="/room" class="btn btn-primary">JOIN</button>
     </div>
   </form>
 </template>
