@@ -1,2 +1,2 @@
-# DrawOi
-DrawOi Apps
+# PictOi
+PictOi Apps
