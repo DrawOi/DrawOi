@@ -23,7 +23,7 @@ export default new Vuex.Store({
         if ( err ) {
           alert('error')
         } else {
-          alert(`succesfully added ${[pictureObj.answer]}`)
+          alert(`succesfully added ${pictureObj.answer}`)
         }
       });
     },

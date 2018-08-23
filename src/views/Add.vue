@@ -12,7 +12,7 @@
             <label for="exampleInputPassword1">image</label>
             <input v-model="image" type="text" class="form-control" id="exampleInputPassword1" placeholder="image url">
           </div>
-          <button type="submit" @click.prevent="submitPicture(answer, image)" class="btn btn-primary">Submit</button>
+          <button type="submit" @click.prevent="submitPicture(image, answer)" class="btn btn-primary">Submit</button>
         </form>
         <br>
     </div>
