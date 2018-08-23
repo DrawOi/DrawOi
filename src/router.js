@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Add from './views/Add.vue'
 
 Vue.use(Router)
 
@@ -26,5 +27,10 @@ export default new Router({
       name: 'room-game',
       component: () => import('./views/Room.vue'),
     },
+    {
+      path: '/add',
+      name: 'add-picture',
+      component: () => import('./views/Add.vue')
+    }
   ]
 })

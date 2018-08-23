@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { app, database} from '@/firebase.js'
+import { database } from '@/firebase.js'
 
 Vue.use(Vuex)
 
@@ -10,21 +10,25 @@ export default new Vuex.Store({
 
   },
   mutations: {
-
+    GET_PICTURE ( state, pictureArr ) {
+      this.pictures = pictureArr
+    }
   },
   actions: {
     addPicture ({ commit, dispatch}, pictureObj) {
-      database().ref('picture/').push.set({
+      database.ref('picture/').push().set({
         answer: pictureObj.answer,
-        image: pictureObj.image,
-        hint : pictureObj.hint
+        image: pictureObj.image
       }, function ( err ) {
         if ( err ) {
           alert('error')
         } else {
-          console.log ('success')
+          alert(`succesfully added ${[pictureObj.answer]}`)
         }
       });
-    } 
+    },
+    getPicture ({ commit, dispatch }) {
+
+    }
   }
 })
