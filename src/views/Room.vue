@@ -8,6 +8,9 @@
       <div class="col-lg-4 col-md-12 col-sm-12">
         <LayoutScore></LayoutScore><br>
         <Timing></Timing>
+        <br>
+        <strong>Ready up: </strong> <ReadyButton/>
+        <hr>
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12">
         <RoomChat></RoomChat>
@@ -22,6 +25,7 @@ import LayoutQuestion from "@/components/LayoutQuestion.vue";
 import LayoutScore from "@/components/LayoutScore.vue";
 import Timing from "@/components/Timing.vue";
 import RoomChat from "@/components/RoomChat.vue";
+import ReadyButton from "@/components/ReadyButton.vue";
 
 export default {
   name: 'room-game',
@@ -30,10 +34,11 @@ export default {
     LayoutScore,
     Timing,
     RoomChat,
+    ReadyButton,
   },
   data: () => ({
     answer: ''
-  }),
+  })
 };
 </script>
 
