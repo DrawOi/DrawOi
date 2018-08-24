@@ -36,9 +36,6 @@ export default new Vuex.Store({
     GET_CURRENT_PIC ( state, pictureObj ) {
       state.currentPic = pictureObj
       let show = pictureObj.show
-      if ( pictureObj.show ) {
-        swal('rick roll', 'a new picture has beeen posted, please query ur answers', 'info')
-      } 
     },
     TALLEY ( state, talleyObj ) {
       state.finished = talleyObj
@@ -66,7 +63,7 @@ export default new Vuex.Store({
         if (err) {
           console.log(err);
         }else {
-          database.ref('player/').once('value', function(snapshot) {
+          database.ref('player/').on('value', function(snapshot) {
             let players = snapshot.val();
             let keyArr = []
             for(let value in players){
@@ -190,7 +187,7 @@ export default new Vuex.Store({
 
       database.ref('messages').push(message)
       .then((data)=>{
-        console.log(data);        
+        console.log(data);
       })
       .catch((err)=>{
         console.log(err);
@@ -207,25 +204,7 @@ export default new Vuex.Store({
       database.ref('chats/').on('value',function(snapshot){
         commit('setChats', snapshot.val())
       })
-    },
-    addPoint (context, userId) {
-      database.ref(`player/${userId}`).once('value', function (snapshot) {
-        let currentPoint = snapshot.val().points 
-        currentPoint ++
-        database.ref(`player/${userId}`).update({points: currentPoint}, function(err){
-          if (err) {
-            // console.log(err);
-          }else {
-            swal(
-              'congrats',
-              'You earned yourself a point',
-              'success'
-            )
-          }
-        })
-
-      }) 
-    } 
+    }
   },
   getters:{
     messages(state){
