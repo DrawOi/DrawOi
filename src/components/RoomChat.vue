@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Message from "./Message.vue";
 import {database} from '@/firebase.js'
 
@@ -54,6 +55,7 @@ export default {
     message: Message
   },
   computed: {
+    ...mapState(['currentPic']),
     messages() {
       return this.chatMessages;
     },
@@ -167,6 +169,8 @@ export default {
     // },
     sendMessage() {
       if (this.content !== "") {
+        console.log(this.currentPic.answer)
+        console.log(this.content)
         // console.log('ini this conten',this.content);
         this.$store.dispatch("sendMessage", {
           content: this.content,

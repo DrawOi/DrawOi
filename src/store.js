@@ -66,7 +66,7 @@ export default new Vuex.Store({
         if (err) {
           console.log(err);
         }else {
-          database.ref('player/').on('value', function(snapshot) {
+          database.ref('player/').once('value', function(snapshot) {
             let players = snapshot.val();
             let keyArr = []
             for(let value in players){

@@ -35,7 +35,7 @@ export default {
           image: image.image,
           show: true
           })
-      }, 5000);
+      }, 10000);
         setTimeout(function(){ 
         clearInterval(play)
         self.talley({
