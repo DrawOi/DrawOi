@@ -7,33 +7,54 @@
           <tr>
             <th>Username</th>
             <th>Score</th>
+            <th>Ready</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Anonymous</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>Anonymous 2</td>
-            <td>90</td>
-          </tr>
-          <tr>
-            <td>Anonymous 3</td>
-            <td>80</td>
+          <tr v-for="(player, index) in room">
+            <td>{{player.name}}</td>
+            <td>{{player.points}}</td>
+            <td>{{player.ready}}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="card-footer">
-      <h5>Winner: {{'Anonymous'}}</h5>
+      <h5>Leading: {{'Anonymous'}}</h5>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
-  name: 'table-score'
+  name: 'table-score',
+  methods: {
+    ...mapActions([
+      'getPlayer',
+      'readyCheck'
+    ])
+  },
+  computed: {
+    ...mapState([
+      'room'
+    ])
+  },
+  mounted() {
+    this.getPlayer()
+  },
+  watch: {
+    room: function(){
+      let allReady = true
+      this.room.forEach(player=>{
+        if (player.ready === false) {
+          allReady = false
+        }
+      })
+      this.readyCheck(allReady)
+    }
+  }
 }
 </script>
 
