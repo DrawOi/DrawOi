@@ -20,7 +20,7 @@
       </table>
     </div>
     <div class="card-footer">
-      <h5>Leading: {{'Anonymous'}}</h5>
+      <h5>Good luck boiz}</h5>
     </div>
   </div>
 </template>
@@ -55,9 +55,6 @@ export default {
         }
       })
       this.readyCheck(allReady)
-    },
-    allReady ( value ) {
-      console.log(value)
     }
   }
 }

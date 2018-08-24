@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Message from "./Message.vue";
 import {database} from '@/firebase.js'
 
@@ -100,6 +100,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'addPoint'
+    ]),
     loadChat() {
       this.totalChatHeight = this.$refs.chatContainer.scrollHeight;
       this.loading = false;
@@ -169,8 +172,11 @@ export default {
     // },
     sendMessage() {
       if (this.content !== "") {
-        console.log(this.currentPic.answer)
-        console.log(this.content)
+        if (this.currentPic.answer == this.content) {
+         let user = localStorage.getItem('id')
+        //  console.log(user)
+         this.addPoint(user)
+        }
         // console.log('ini this conten',this.content);
         this.$store.dispatch("sendMessage", {
           content: this.content,

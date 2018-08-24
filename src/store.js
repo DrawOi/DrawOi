@@ -207,7 +207,25 @@ export default new Vuex.Store({
       database.ref('chats/').on('value',function(snapshot){
         commit('setChats', snapshot.val())
       })
-    }
+    },
+    addPoint (context, userId) {
+      database.ref(`player/${userId}`).once('value', function (snapshot) {
+        let currentPoint = snapshot.val().points 
+        currentPoint ++
+        database.ref(`player/${userId}`).update({points: currentPoint}, function(err){
+          if (err) {
+            // console.log(err);
+          }else {
+            swal(
+              'congrats',
+              'You earned yourself a point',
+              'success'
+            )
+          }
+        })
+
+      }) 
+    } 
   },
   getters:{
     messages(state){
