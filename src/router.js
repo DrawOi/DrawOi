@@ -25,6 +25,11 @@ export default new Router({
       path: '/room',
       name: 'room-game',
       component: () => import('./views/Room.vue'),
+      children:[{
+        path:'/chat-room',
+        name:'chat-room',
+        component: ()=>import('./components/Message.vue')
+      }]
     },
   ]
 })
