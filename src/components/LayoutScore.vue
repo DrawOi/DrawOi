@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(player, index) in room">
+          <tr v-for="(player, index) in room" :key="index">
             <td>{{player.name}}</td>
             <td>{{player.points}}</td>
             <td>{{player.ready}}</td>
@@ -38,10 +38,12 @@ export default {
   },
   computed: {
     ...mapState([
-      'room'
+      'room',
+      'allReady'
     ])
   },
   mounted() {
+    // console.log('ayamfAdsadsa')
     this.getPlayer()
   },
   watch: {
@@ -53,6 +55,9 @@ export default {
         }
       })
       this.readyCheck(allReady)
+    },
+    allReady ( value ) {
+      console.log(value)
     }
   }
 }
