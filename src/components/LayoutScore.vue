@@ -32,7 +32,8 @@ export default {
   name: 'table-score',
   methods: {
     ...mapActions([
-      'getPlayer'
+      'getPlayer',
+      'readyCheck'
     ])
   },
   computed: {
@@ -42,6 +43,17 @@ export default {
   },
   mounted() {
     this.getPlayer()
+  },
+  watch: {
+    room: function(){
+      let allReady = true
+      this.room.forEach(player=>{
+        if (player.ready === false) {
+          allReady = false
+        }
+      })
+      this.readyCheck(allReady)
+    }
   }
 }
 </script>

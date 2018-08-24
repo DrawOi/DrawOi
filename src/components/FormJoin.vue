@@ -11,15 +11,17 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'form-join',
   data: () => ({
-    username: ''
+    username: '',
   }),
   methods: {
     ...mapActions([
-      "addPlayer"
+      "addPlayer",
+      "readyCheck"
     ]),
     submit(){
       let inputObj = {
@@ -30,7 +32,7 @@ export default {
       this.addPlayer(inputObj)
       this.$router.push({ path: '/room' })
     }
-  }
+  },
 }
 </script>
 

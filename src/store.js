@@ -6,16 +6,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-<<<<<<< HEAD
     pictures: [],
-    room: []
+    room: [],
+    allReady: false
   },
   mutations: {
     ASSIGN_PLAYER (state, payload){
       state.room = payload
     },
-    GET_PICTURE ( state, pictureArr ) {
-      state.pictures = pictureArr
+    READY_CHECK (state, payload){
+      // console.log(payload);
+      if (payload) {
+        state.allReady = payload
+      }
+    },
+    GET_PICTURE ( state, payload ) {
+      state.allReady = payload
     }
   },
   actions: {
@@ -25,7 +31,20 @@ export default new Vuex.Store({
         if (err) {
           console.log(err);
         }else {
-          console.log('success');
+          database.ref('player/').on('value', function(snapshot) {
+            let players = snapshot.val();
+            let keyArr = []
+            for(let value in players){
+              keyArr.push(value)
+            }
+            console.log('dasdasdasd',keyArr[keyArr.length - 1]);
+            localStorage.setItem('id', keyArr[keyArr.length - 1])
+          })
+          swal(
+            'Yeay!',
+            'You have logged in!',
+            'success'
+          )
         }
       })
     },
@@ -37,9 +56,26 @@ export default new Vuex.Store({
         for(let value in players){
           keyArr.push(players[value])
         }
-        console.log(keyArr);
+        // console.log(keyArr);
         context.commit('ASSIGN_PLAYER', keyArr)
       })
+    },
+    readyPlayer(context, payload){
+      database.ref(`player/${localStorage.getItem('id')}`).update({ready: true}, function(err){
+        if (err) {
+          // console.log(err);
+        }else {
+          swal(
+            'Yeay!',
+            'You are ready!',
+            'success'
+          )
+        }
+      })
+    },
+    readyCheck(context, payload){
+      // console.log(payload);
+      context.commit('READY_CHECK', payload)
     },
     addPicture ({ commit, dispatch }, pictureObj) {
       database.ref('picture/').push().set({
