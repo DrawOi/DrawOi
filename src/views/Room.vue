@@ -8,7 +8,9 @@
       <div class="col-lg-4 col-md-12 col-sm-12">
         <LayoutScore></LayoutScore><br>
         <Timing></Timing>
-        <ReadyButton/>
+        <br>
+        <strong>Ready up: </strong> <ReadyButton/>
+        <hr>
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12">
         <RoomChat></RoomChat>
