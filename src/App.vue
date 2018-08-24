@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <router-view/>
+    <router-view class="bodyHeight"/>
     <Footer></Footer>
   </div>
 </template>
@@ -36,5 +36,10 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.bodyHeight {
+  max-height: 1000vh;
+  min-height: 100vh;
 }
 </style>
