@@ -6,16 +6,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    pictures: []
-
+    pictures: [],
   },
   mutations: {
     GET_PICTURE ( state, pictureArr ) {
-      this.pictures = pictureArr
+      state.pictures = pictureArr
     }
   },
   actions: {
-    addPicture ({ commit, dispatch}, pictureObj) {
+    addPicture ({ commit, dispatch }, pictureObj) {
       database.ref('picture/').push().set({
         answer: pictureObj.answer,
         image: pictureObj.image
@@ -28,7 +27,11 @@ export default new Vuex.Store({
       });
     },
     getPicture ({ commit, dispatch }) {
-
+      const getData = database.ref('picture/')
+      getData.on('value', function(snapshot) {
+        let pictureObj = snapshot.val()
+        commit('GET_PICTURE', pictureObj)
+      })
     }
   }
 })
