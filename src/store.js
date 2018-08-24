@@ -10,25 +10,30 @@ export default new Vuex.Store({
   },
   mutations: {
     ASSIGN_PLAYER (state, payload){
-      console.log(state);
-      state.room.push(payload)
-      console.log(payload);
-      if (state.players.length !== 4) {
-        console.log('room full');
-      }else {
-      }
+      state.room = payload
     }
   },
   actions: {
     addPlayer(context, payload){
-      context.commit("ASSIGN_PLAYER", payload)
-      // Event.preventDefault();
       console.log(payload);
-      database.ref('player/').push().set(payload, function(){
+      database.ref('player/').push().set(payload, function(err){
         if (err) {
           console.log(err);
         }else {
+          console.log('success');
         }
+      })
+    },
+    getPlayer(context, payload){
+      // console.log('asdfasdfasd');
+      database.ref('player/').on('value', function(snapshot) {
+        let players = snapshot.val();
+        let keyArr = []
+        for(let value in players){
+          keyArr.push(players[value])
+        }
+        console.log(keyArr);
+        context.commit('ASSIGN_PLAYER', keyArr)
       })
     }
   }

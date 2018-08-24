@@ -4,7 +4,7 @@
       <label>Username</label>
       <input type="text" v-model="username" placeholder="Input your username" class="form-control">
       <br>
-      <button type="submit" class="btn btn-primary" @click="submit">JOIN</button>
+      <button type="submit" class="btn btn-primary" @click.prevent="submit">JOIN</button>
     </div>
   </form>
 </template>
@@ -24,9 +24,11 @@ export default {
     submit(){
       let inputObj = {
         name: this.username,
-        points: 0
+        points: 0,
+        ready: false
       }
       this.addPlayer(inputObj)
+      this.$router.push({ path: '/room' })
     }
   }
 }
