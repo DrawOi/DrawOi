@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+// import Score from './views/Score.vue'
 // import Add from './views/Add.vue'
 
 Vue.use(Router)
@@ -31,6 +32,11 @@ export default new Router({
       path: '/add',
       name: 'add-picture',
       component: () => import('./views/Add.vue')
+    },
+    {
+      path: '/score',
+      name: 'score-board',
+      component: () => import('./views/Score.vue')
     }
   ]
 })
