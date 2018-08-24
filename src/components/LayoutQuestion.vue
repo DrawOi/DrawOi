@@ -6,7 +6,6 @@
       <h5>Ayo tebak, gambar apa ini?</h5>
     </div>
     <div class="card-footer">
-      <button class="btn btn-outline-info" @click="startGame">start game</button>
     </div>
   </div>
 </template>
@@ -45,7 +44,7 @@ export default {
           rank3: 'levit',
           show: true
         })
-         }, 15000);
+         }, 120000);
     }
   },
   mounted () {

@@ -47,7 +47,7 @@ export default new Vuex.Store({
           swal('time is up', 'the games has been concluded, winners will rewarded while losers will be branded as scrubs', 'success')
           setTimeout(() => {
             Router.push('/score')
-          })
+          }, 2000)
         }, 5000)
       }
     }
